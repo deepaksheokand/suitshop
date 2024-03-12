@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+		<!-- Create Element -->
+		<referenceContainer name="header.panel">	
+		</referenceContainer>
+			<container name="header.top.container" label="header_top_container" htmlTag="div" htmlClass="header-top-container" >	
+				<block class="Magento\Cms\Block\Block" name="header_top_left"> 
+					<arguments> 
+						<argument name="block_id" xsi:type="string">header-top-left</argument> 
+					</arguments> 
+				</block>
+			</container>
+		
+		<referenceContainer name="header-wrapper">		
+			<container name="header-middle" label="header_middle-div" htmlTag="div" htmlClass="header_middle" after="logo">							
+			 </container>
+			<container name="header-right" label="header_right-div" htmlTag="div" htmlClass="header_right" after="header_middle">				
+			</container>
+		</referenceContainer>
+		<!-- Move Element -->	
+		<move element="header.top.container" destination="header.panel" before="-" />
+		<move element="top.search" destination="header-middle" after="-" />
+		<move element="navigation.sections" destination="header.container" after="-" />
+		<move element="minicart" destination="header-right" after="-" />
+		<move element="header.links" destination="header-right" before="wish-list-link"/>
+		<move element="wish-list-link" destination="header-right" before="minicart"/>
+    </body>
+</page>
