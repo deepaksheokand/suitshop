@@ -29,8 +29,11 @@ class Slider extends \Magento\Framework\View\Element\Template
 
         public function getSliders()
         {
-         $collection = $this->slider->getCollection();
-         return $collection;
+            $collection = $this->slider->getCollection()->addFieldToFilter(
+                'status',
+                1
+            );
+            return $collection;
         }
 
 	public function getSliderBaseUrl($imageName)

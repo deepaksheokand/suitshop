@@ -5,10 +5,7 @@ $sliders = $block->getSliders();
     <div class="owl-carousel home-slider">
         <?php
         $count = 0;
-        foreach ($sliders as $slider) { 
-            if ($slider->getStatus() == '1') {
-            ?>
-        
+        foreach ($sliders as $slider) { ?>
             <div class="item item-custom">
                 <?php if ($slider->getId()) {
                 ?>
@@ -20,4 +17,4 @@ $sliders = $block->getSliders();
         <?php } ?>
 
     </div>
-<?php } }?>
+<?php } ?>
