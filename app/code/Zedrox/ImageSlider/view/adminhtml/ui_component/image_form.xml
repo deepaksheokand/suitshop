@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">image_form.image_form_data_source</item>
+            <item name="deps" xsi:type="string">image_form.image_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Add New Record</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">image_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="save" xsi:type="string">Zedrox\ImageSlider\Block\Adminhtml\Edit\Save</item>
+            <item name="back" xsi:type="string">Zedrox\ImageSlider\Block\Adminhtml\Edit\BackButton</item>
+            <item name="reset" xsi:type="string">Zedrox\ImageSlider\Block\Adminhtml\Edit\ResetButton</item>
+        </item>
+    </argument>
+    <dataSource name="image_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Zedrox\ImageSlider\Model\ImageFormDataProvider</argument>
+            <argument name="name" xsi:type="string">image_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">image_id</argument>
+            <argument name="requestFieldName" xsi:type="string">image_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="*/*/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+
+    <fieldset name="general_information">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="collapsible" xsi:type="boolean">false</item>
+                <item name="label" xsi:type="string" translate="true">Image Information</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="image_id" sortOrder="10" formElement="input">
+            <settings>
+                <dataType>int</dataType>
+                <visible>false</visible>
+                <label translate="true">Image Id</label>
+            </settings>
+        </field>
+        <field name="status">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">5</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="label" xsi:type="string" translate="true">Enable</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="string">1</item>
+                        <item name="false" xsi:type="string">2</item>
+                    </item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="default" xsi:type="string">2</item>
+                </item>
+            </argument>
+        </field>
+        <field name="title" sortOrder="10" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <label translate="true">Title</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+<!-- 
+        <field name="description" sortOrder="20" formElement="wysiwyg" template="ui/form/field">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">description</item>
+                    <item name="wysiwygConfigData" xsi:type="array">
+                        <item name="is_pagebuilder_enabled" xsi:type="boolean">false</item>
+                        <item name="toggle_button" xsi:type="boolean">true</item>
+                        <item name="height" xsi:type="string">150px</item>
+                        <item name="add_variables" xsi:type="boolean">true</item>
+                        <item name="add_widgets" xsi:type="boolean">true</item>
+                        <item name="add_images" xsi:type="boolean">true</item>
+                        <item name="add_directives" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Description</label>
+                <dataScope>description</dataScope>
+            </settings>
+            <formElements>
+                <wysiwyg class="Magento\Catalog\Ui\Component\Category\Form\Element\Wysiwyg">
+                    <settings>
+                        <rows>5</rows>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field> -->
+
+        <field name="slider_ids">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Zedrox\ImageSlider\Model\Source\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Dropdown</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">item</item>
+                    <item name="dataScope" xsi:type="string">slider_ids</item>
+                    <item name="sortOrder" xsi:type="number">100</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="url_key" sortOrder="20" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <label translate="true">Url</label>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <notice>Ex: (https://example.com/) or (http://example.com/)</notice>
+            </settings>
+        </field>
+        <field name="image">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="label" xsi:type="string" translate="true">Banner Image </item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="previewTmpl" xsi:type="string">Zedrox_ImageSlider/form/image</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="imageslider/image/imageuploader/"/>
+                    </item>
+                </item>
+            </argument>
+        </field>
+      <field name="mobile_image">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="label" xsi:type="string" translate="true">Mobile Banner Image</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                    <item name="previewTmpl" xsi:type="string">Zedrox_ImageSlider/form/image</item>
+                    <item name="required" xsi:type="boolean">true</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="notice" xsi:type="string" translate="true">Recommended size (768px x 400)</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="imageslider/image/imageuploader/"/>
+                    </item>
+                </item>
+            </argument>
+        </field> 
+    </fieldset>
+</form>
