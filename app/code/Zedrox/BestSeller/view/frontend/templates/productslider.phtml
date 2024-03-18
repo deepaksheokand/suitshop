@@ -1,0 +1,163 @@
+<?php
+
+use Zedrox\BestSeller\Block\AbstractSlider;
+use Magento\Framework\App\Action\Action;
+use Magento\Review\Block\Product\ReviewRenderer;
+
+
+$items = $block->getProductCollection();
+?>
+<?php $iterator = 1; ?>
+
+<div class="owl-carousel best-seller-slider">
+  <?php $count = 0; ?>
+  <?php foreach ($items as $_item): ?>
+
+    <div class="item item-custom">
+      <div class="product details slider-product-item-image">
+            <strong class="product image product-item-image">
+            <a title="<?= $block->escapeHtml($_item->getImage()) ?>"
+                href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>">
+                <img src="<?= $block->getSliderBaseUrl($_item->getImage()); ?>" alt="<?= $_item->getName() ?>"
+                data-index="<?= $count; ?>" width="100%">
+            </a>
+            </strong>
+        </div>
+      <div class="product details slider-product-item-name">
+            <strong class="product name product-item-name">
+            <a title="<?= $block->escapeHtml($_item->getName()) ?>"
+                href="<?= $block->escapeUrl($block->getProductUrl($_item)) ?>">
+                <?= $block->escapeHtml($_item->getName()) ?>
+            </a>
+            </strong>
+        </div>
+        <div class="product details slider-product-item-price">
+            <strong class="product price product-item-price">
+            <?php if ($_item->getFinalPrice() && $_item->getFinalPrice() != $_item->getPrice()): ?>
+                <span class="old-price">
+                <?= number_format($_item->getPrice(), 2) ?>
+                </span>
+                <span class="special-price">
+                <?= number_format($_item->getFinalPrice(), 2) ?>
+                </span>
+                <?php 
+                if($_item->getFinalPrice() < $_item->getPrice())
+                    $_savingPercent = 100 - round(($_item->getFinalPrice() / $_item->getPrice())*100);
+                    echo -$_savingPercent . '%';
+                ?>
+            <?php else: ?>
+                <?= number_format($_item->getPrice(), 2) ?>
+            <?php endif; ?>
+            </strong>
+        </div>
+        <div class="product details slider-product-item-review">
+            <?php
+            $reviewRenderer = $block->getLayout()->createBlock(ReviewRenderer::class);
+            echo $reviewSummaryHtml = $reviewRenderer->getReviewsSummaryHtml($_item, 'short');
+            ?>
+            <?php if (empty(trim($reviewSummaryHtml))) {
+            echo '<p><a href="' . $block->escapeUrl($block->getProductUrl($_item)) . '#review-form">Be the first to review this product</a></p>';
+
+            }else {
+              $starsPattern = '/<span class=".*?star.*?"><\/span>/';
+              if (preg_match($starsPattern, $reviewSummaryHtml)) {
+                  echo $reviewSummaryHtml;
+              }
+          }
+            ?>
+            
+        </div>
+
+      <!-- Add to cart -->
+
+      <div class="product actions slider-product-item-actions product-item-actions">
+        <?php if ($_item->isSaleable()): ?>
+          <?php $postParams = $block->getAddToCartPostParams($_item); ?>
+          <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_item->getSku()) ?>"
+            action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post">
+            <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
+            <input type="hidden" name="<?= /* @escapeNotVerified */ Action::PARAM_NAME_URL_ENCODED ?>"
+              value="<?= /* @escapeNotVerified */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
+            <?= $block->getBlockHtml('formkey') ?>
+            <button type="submit" title="<?= $block->escapeHtml(__('Add to Cart')) ?>" class="action tocart primary">
+              <span>
+                <?= /** @noEscape */ __('Add to Cart') ?>
+              </span>
+            </button>
+          </form>
+        <?php else: ?>
+          <?php if ($_item->getIsSalable()): ?>
+            <div class="stock available"><span>
+                <?= $block->escapeHtml(__('In stock')) ?>
+              </span></div>
+          <?php else: ?>
+            <div class="stock unavailable"><span>
+                <?= $block->escapeHtml(__('Out of stock')) ?>
+              </span></div>
+          <?php endif; ?>
+        <?php endif; ?>
+      </div>
+      <div class="secondary-addto-links actions-secondary" data-role="add-to-links">
+        <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
+          <a href="#" data-post='<?= /** @noEscape */ $block->getAddToWishlistParams($_item); ?>' class="action towishlist"
+            data-action="add-to-wishlist" title="<?= /** @noEscape */ __('Add to Wish List') ?>">
+            <span>
+              <?= /** @noEscape */ __('Add to Wish List') ?>
+            </span>
+          </a>
+        <?php endif; ?>
+        <?php if ($block->getAddToCompareUrl()): ?>
+          <?php $compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare'); ?>
+          <a href="#" class="action tocompare"
+            data-post='<?= /** @noEscape */ $compareHelper->getPostDataParams($_item); ?>' data-role="add-to-links"
+            title="<?= /** @noEscape */ __('Add to Compare') ?>">
+            <span>
+              <?= /** @noEscape */ __('Add to Compare') ?>
+            </span>
+          </a>
+        <?php endif; ?>
+      </div>
+      <?php $count++; ?>
+    </div>
+
+  <?php endforeach ?>
+</div>
+<script>
+  require(['jquery', 'owlcarousel'], function ($) {
+    $(document).ready(function () {
+
+      $('.best-seller-slider').owlCarousel({
+        center: false,
+        startPosition: 0,
+        margin: 0,
+        responsive: {
+          0: {
+            items: 1
+          },
+          768: {
+            items: 2
+          },
+          992: {
+            items: 3
+          },
+          1200: {
+            items: 4
+          }
+        },
+        nav: true,
+        loop: false,
+        rewind: true,
+        dots: true,
+        dotsSpeed: 1000,
+        slideBy: 1,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplayHoverPause: true,
+        autoplaySpeed: 800,
+        navSpeed: 1000,
+        mouseDrag: true,
+        responsiveRefreshRate: 100
+      });
+    });
+  });
+</script>
