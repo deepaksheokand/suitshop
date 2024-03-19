@@ -4,13 +4,18 @@
 @primary_color:#DA5E28;
 @secondary_color:#00B675;
 @black_color:#000;
+@black_color1:#020202;
 @grey_color:#333;
 @light_grey:#B6B6B6;
+@light_grey_200:#707070;
+@white:#fff;
 //
 // Bg Color
 //--------------------------------
 @bg_primaryNew:#DA5E28;
 @bg_white:#fff;
+@bg_black:#000;
+@bg_lightGrey100:#ECECEC;
 //
 // Fonts 
 //--------------------------------
@@ -73,3 +78,67 @@
 @button__border-radius: 0rem;
 @button__font-weight: @font-weight__regular;
 @button__font-size:1.6rem;
+
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+    //
+    // Text Alignment
+    //----------------------------------
+    .text{
+        &-left{
+            text-align: left;
+        }
+        &-right{
+            text-align: right;
+        }
+        &-center{
+            text-align: center;
+        }
+        &-justify{
+            text-align: justify;
+        }
+    }
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    //
+    // Text Alignment
+    //----------------------------------
+    .text-md{
+        &-left{
+            text-align: left;
+        }
+        &-right{
+            text-align: right;
+        }
+        &-center{
+            text-align: center;
+        }
+        &-justify{
+            text-align: justify;
+        }
+    }
+}
+//
+// Text Color Swatch
+//----------------------------------
+.text{
+    &-white{
+        color: @white;
+    }
+    &-black{
+        text-align: @black_color;
+    }
+}
+//
+// bg Color Swatch
+//----------------------------------
+.bg{
+    &-primary{
+        background: @bg_primaryNew;
+    }
+    &-lightGrey{
+        background:@bg_lightGrey100 ;
+    }
+}
