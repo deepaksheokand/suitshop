@@ -14,9 +14,9 @@ require(['jquery', 'owlcarousel'], function ($) {
                 }
             },
             nav: true,
-            loop: false,
+            loop: true,
             rewind: true,
-            dots: true,
+            dots: false,
             dotsSpeed: 1000,
             slideBy: 1,
             autoplay: true,

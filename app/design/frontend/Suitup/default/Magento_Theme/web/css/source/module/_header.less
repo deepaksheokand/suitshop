@@ -3,6 +3,16 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
+    *{
+       .box-sizing(@boxsizing:border-box);
+    }
+    .nav{
+        &-toggle{
+            &:before{
+                color: @black_color;
+            }
+        }
+    }
     .block-search{
         .control{
             .input-text{
@@ -34,7 +44,7 @@
             list-style: none;
             position: relative;
             margin: 0;
-            margin-right: 3rem;
+            margin-right: 2rem;
            & > li{
             margin: 0;
                 &:not(.authorization-link){
@@ -62,6 +72,7 @@
                 }
             }
             &.account-login{
+                margin-right: 3rem;
                 & > li{
                     &.welcome{
                         display: block;
@@ -200,24 +211,54 @@
             }
         }
     }
-    .minicart-wrapper{
-        .action {
-            &.showcart, &.showcart.active{
-                &::before{
-                    content: '';
-                    width: 3.5rem;
-                    height:3.5rem;
-                    background: url('@{baseDir}/images/cart-icon.svg') no-repeat;
-                    background-size: contain;
+    //
+    // Header Menu Mobile
+    //------------------------
+    .mobile-menu-category{
+        padding: 0 1.5rem;
+        h2{
+            margin: 2rem 0;
+            font-weight: bold;
+            color: @black_color;
+        }
+        ul{
+            padding: 0;
+            margin: 0;
+            li{
+                list-style: none;
+                border-top: 1px solid @light_grey;
+                margin-bottom: 0;
+                &:last-child{
+                    border-bottom: 1px solid @light_grey;
+                }
+                a{
+                    .flex-display(@display:flex);
+                    .align-items(@align:center);
+                    color: @black_color;
+                    font-weight: bold;
+                    padding: 0.8rem 1rem;
+                    font-size: 1.6rem;                 
+                    .menu-icon{
+                        max-width: 2.5rem;
+                        margin-right: 1rem;
+                    }
+                    &:hover{
+                        color: @primary_color;
+                    }
                 }
             }
         }
     }
+    
 }
 //
 //  Desktop
 //  _____________________________________________
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .container{
+        max-width: @layout__max-width;
+        margin: auto;
+    }
     .page-header {
         .panel{
             &.wrapper{
@@ -253,6 +294,9 @@
                                     height: 2.5rem;
                                     margin-right: 1rem;
                                 }
+                                strong{
+                                    margin-inline: 0.5rem;
+                                }
                                 &:hover{
                                     text-decoration: none;
                                     color:@secondary_color;
@@ -261,6 +305,13 @@
                         }
                     }
                 }
+            }
+        }
+        .switcher {
+            &-currency{
+                margin-left: auto;
+                color: @black_color;
+                font-size: 1.5rem;
             }
         }
     }
@@ -307,6 +358,22 @@
                 height: 100%;
                 background:url('@{baseDir}images/search-icon.svg') no-repeat center center;
                 background-size: contain;
+            }
+        }
+    }
+    //
+    // Mini Cart
+    //------------------------
+    .minicart-wrapper{
+        .action {
+            &.showcart, &.showcart.active{
+                &::before{
+                    content: '';
+                    width: 3.5rem;
+                    height:3.5rem;
+                    background: url('@{baseDir}/images/cart-icon.svg') no-repeat;
+                    background-size: contain;
+                }
             }
         }
     }
@@ -364,7 +431,29 @@
         } 
         &.links{
             margin-right: 1rem;
-        }     
+            & > li{
+                &.authorization-link{
+                   & > a{
+                        &::before{
+                            width: 3rem;
+                            height: 3rem;
+                            background: url('@{baseDir}images/user-icon.svg') no-repeat center center;
+                        }
+                    }
+                }
+            }
+            &.account-login{
+                & > li{
+                    &.welcome{
+                        &::before{
+                            width:3rem;
+                            height:3rem;
+                            background: url('@{baseDir}images/user-icon.svg') no-repeat center center;
+                        }
+                    }
+                }
+            }
+        }   
     }
     .block-search{
         .label{
@@ -408,12 +497,63 @@
             }
         }
     }
+    //
+    // Mini Cart
+    //------------------------
     .minicart-wrapper{
         margin: 0;
+        .action {
+            &.showcart, &.showcart.active{
+                &::before{
+                    content: '';
+                    width: 3rem;
+                    height:3rem;
+                    background: url('@{baseDir}/images/cart-icon.svg') no-repeat;
+                    background-size: contain;
+                }
+            }
+        }
     }
+    //
+    // Logo
+    //------------------------
     .logo{
+        margin-bottom: 0;
         img{
             max-width: 130px;
+        }
+    }
+    //
+    // Nav section menu
+    // ------------------------------
+    .nav-sections-items{
+        div{
+            &:nth-child(3){
+                display: none;
+            }
+        }
+    }
+    .nav-sections-item{
+        &-title{
+            color: @black_color;
+        }
+    }
+    .navigation {
+        .level0 {
+            & > .level-top{
+                padding-block: 1.2rem;
+            }
+        }
+    }
+    .nav-sections {
+        .switcher{
+            &-dropdown{
+                li{
+                    a{
+                        color: @black_color;
+                    }
+                }
+            }
         }
     }
 }

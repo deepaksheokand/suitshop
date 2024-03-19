@@ -1,0 +1,71 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Newsletter\Block\Subscribe $block */
+?>
+<div class="block newsletter">
+    <div class="title"><strong><?= $block->escapeHtml(__('Meld je aan voor de Suitup Nieuwsbrief')) ?></strong></div>
+    <div class="content">
+        <form class="form subscribe"
+            novalidate
+            action="<?= $block->escapeUrl($block->getFormActionUrl()) ?>"
+            method="post"
+            data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+            id="newsletter-validate-detail">
+            <div class="field newsletter">
+                <div class="control">
+                    <label for="newsletter">
+                        <span class="label">
+                            <?= $block->escapeHtml(__('Sign Up for Our Newsletter:')) ?>
+                        </span>
+                        <input name="email" type="email" id="newsletter"
+                               placeholder="<?= $block->escapeHtml(__('E-mailadres')) ?>"
+                               data-mage-init='{"mage/trim-input":{}}'
+                               data-validate="{required:true, 'validate-email':true}"
+                        />
+                    </label>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="action subscribe primary"
+                        title="<?= $block->escapeHtmlAttr(__('Subscribe')) ?>"
+                        type="submit"
+                        aria-label="Subscribe">
+                    <span><?php //$block->escapeHtml(__('Subscribe')) ?>
+                        <svg width="17px" height="100%" viewBox="0 0 106 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-miterlimit:10;">
+                            <g id="Artboard1" transform="matrix(0.890411,0,0,0.778878,-119.128,-94.2936)">
+                                <rect x="133.79" y="121.063" width="118.229" height="122.683" style="fill:none;"/>
+                                <clipPath id="_clip1">
+                                    <rect x="133.79" y="121.063" width="118.229" height="122.683"/>
+                                </clipPath>
+                                <g clip-path="url(#_clip1)">
+                                    <g transform="matrix(2.99488,0,0,3.42373,146.892,169.116)">
+                                        <g>
+                                            <g>
+                                                <g>
+                                                    <path d="M0,3.934L12.125,13.047L30.074,-9.113" style="fill:none;fill-rule:nonzero;stroke:white;stroke-width:11.34px;"/>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Customer/js/block-submit-on-send": {
+                "formId": "newsletter-validate-detail"
+            }
+        }
+    }
+</script>
