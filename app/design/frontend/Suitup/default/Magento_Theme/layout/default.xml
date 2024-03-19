@@ -24,12 +24,46 @@
 			<container name="header-right" label="header_right-div" htmlTag="div" htmlClass="header_right" after="header_middle">				
 			</container>
 		</referenceContainer>
+		<referenceContainer name="page.bottom.container" htmlClass="page-bottom">
+			<block class="Magento\Cms\Block\Block" name="payment-block"> 
+				<arguments> 
+					<argument name="block_id" xsi:type="string">footer-payment-block</argument> 
+				</arguments> 
+			</block>
+		</referenceContainer>
+		<referenceContainer name="footer">
+			<container name="footer-left" label="footer-left" htmlTag="div" htmlClass="footer-left" before="-">
+				<block class="Magento\Cms\Block\Block" name="footer-social-links" after="-"> 
+					<arguments> 
+						<argument name="block_id" xsi:type="string">footer-social-links</argument> 
+					</arguments> 
+				</block>
+			</container>
+			<container name="footer-right" label="footer-right" htmlTag="div" htmlClass="footer-right" after="-">
+				<block class="Magento\Cms\Block\Block" name="footer-service"> 
+					<arguments> 
+						<argument name="block_id" xsi:type="string">footer-service</argument> 
+					</arguments> 
+				</block>
+				<block class="Magento\Cms\Block\Block" name="footer-suitshop" after="footer-service"> 
+					<arguments> 
+						<argument name="block_id" xsi:type="string">footer-suitshop</argument> 
+					</arguments> 
+				</block>
+			</container>
+		</referenceContainer>
 		<!-- Move Element -->	
 		<move element="header.top.container" destination="header.panel" before="-" />
+		<move element="header.switchers" destination="header.top.container" before="-" />
+		<move element="currency" destination="header.top.container" after="-" />
 		<move element="top.search" destination="header-middle" after="-" />
 		<move element="navigation.sections" destination="header.container" after="-" />
 		<move element="minicart" destination="header-right" after="-" />
 		<move element="header.links" destination="header-right" before="wish-list-link"/>
 		<move element="wish-list-link" destination="header-right" before="minicart"/>
+		<move element="page.bottom.container" destination="page.wrapper" before="footer-container"/>
+		<move element="form.subscribe" destination="footer-left" before="-"/>
+		<!-- Remove Element -->	
+		<referenceBlock name="footer_links" remove="true"/>
     </body>
 </page>
