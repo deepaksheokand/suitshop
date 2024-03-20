@@ -177,15 +177,16 @@
                         .rating{
                             &-summary{
                                 .rating-result{
+                                    vertical-align: top;
                                     &::before{
                                         width: 14px;
-                                        height: 14px;
+                                        height: 16px;
                                     }
                                     span{
                                         &::before{
                                             color: @secondary_color;
                                             width: 14px;
-                                            height: 14px;
+                                            height: 16px;
                                         }
                                     }
                                 }
@@ -384,6 +385,12 @@
                         margin-left: auto;
                     }
                 }
+                .product-reviews{
+                    &-summary{
+                        margin-left: auto;
+                    }
+                }
+
             }
         }
     }
@@ -578,10 +585,10 @@
                         width: 1.6rem;
                     }
                     .owl-prev{
-                        left: -0.5rem;
+                        left: -0.5rem !important;
                     }
                     .owl-next{
-                        right: -2rem;
+                        right: -2rem !important;
                     }
                 }
             }
