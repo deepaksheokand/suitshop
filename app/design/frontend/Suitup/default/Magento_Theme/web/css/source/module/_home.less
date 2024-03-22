@@ -4,6 +4,47 @@
 
 & when (@media-common = true) {
     //
+    //Breadcrumb
+    //------------------------
+    .breadcrumbs{
+       margin-block: 1.5rem;
+       .items {
+         & > .item{
+            color: @black_color;
+            font-size: 1.5rem;
+            &:not(:last-child){
+                &::after{
+                    content: '/';
+                    font-size: 1.5rem;
+                    line-height: 1.5rem;
+                    color:@black_color;
+                }
+            }
+            a{
+                color: @secondary_color;
+            }
+         }
+       }
+    }
+    .item {
+        img{
+            height: auto;
+        }
+    }
+    //
+    // Page Title Main
+    //------------------------
+    .page{
+        &-title-wrapper{
+            margin-bottom: 3rem;
+            .page-title{
+                margin-bottom: 0;
+                font-weight: bold;
+                color: @black_color;
+            }
+        }
+    }
+    //
     // Banner
     //------------------------
     .banner{
@@ -177,15 +218,16 @@
                         .rating{
                             &-summary{
                                 .rating-result{
+                                    vertical-align: top;
                                     &::before{
                                         width: 14px;
-                                        height: 14px;
+                                        height: 16px;
                                     }
                                     span{
                                         &::before{
                                             color: @secondary_color;
                                             width: 14px;
-                                            height: 14px;
+                                            height: 16px;
                                         }
                                     }
                                 }
@@ -296,6 +338,18 @@
 //  Desktop
 //  _____________________________________________
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    //
+    // Page Title Main
+    //------------------------
+    .page{
+        &-title-wrapper{
+            margin-bottom: 3rem;
+            .page-title{
+                font-size: 4rem;
+            }
+        }
+
+    }
     .mobile-menu-category{
         display: none;
     }
@@ -384,6 +438,12 @@
                         margin-left: auto;
                     }
                 }
+                .product-reviews{
+                    &-summary{
+                        margin-left: auto;
+                    }
+                }
+
             }
         }
     }
@@ -519,6 +579,18 @@
 //  _____________________________________________
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     //
+    // Page Title Main
+    //------------------------
+    .page{
+        &-title-wrapper{
+            margin-bottom:2.5rem;
+            .page-title{
+                font-size: 2.5rem;
+            }
+        }
+
+    }
+    //
     // Banner
     //------------------------
     .banner{
@@ -578,10 +650,10 @@
                         width: 1.6rem;
                     }
                     .owl-prev{
-                        left: -0.5rem;
+                        left: -0.5rem !important;
                     }
                     .owl-next{
-                        right: -2rem;
+                        right: -2rem !important;
                     }
                 }
             }
