@@ -333,7 +333,47 @@
             .flex-display(@display:inline-flex);
             .align-items(@align:center);
             .justify-content(@justify:flex-end);
-        }      
+        }  
+        &.content{
+            .flex-display(@display:flex);
+            .flex-wrap(@wrap:wrap);
+            .compare {
+                display: none;
+            }
+        }
+        &.links{
+           & > li{
+                &.authorization-link{
+                   & > a{
+                        &::before{
+                            width: 5rem;
+                            height: 6.5rem;
+                            background: url('@{baseDir}images/user-icon.svg') no-repeat center bottom;
+                        }
+                    }
+                }
+            }
+            &.account-login{
+                & > li{
+                    &.welcome{
+                        &::before{
+                            width:5rem;
+                            height:6.5rem;
+                            background: url('@{baseDir}images/user-icon.svg') no-repeat center bottom;
+                        }
+                    }                   
+                }
+            }
+        }
+    }
+    .wishlist{
+        a{
+            &::before{
+                width:5rem;
+                height:6.5rem;
+                background: url('@{baseDir}images/wishlist-icon.svg') no-repeat center bottom;
+            }
+        }
     }
     .block-search{
         width: 100%;
@@ -371,9 +411,9 @@
             &.showcart, &.showcart.active{
                 &::before{
                     content: '';
-                    width: 3.5rem;
-                    height:3.5rem;
-                    background: url('@{baseDir}/images/cart-icon.svg') no-repeat;
+                    width: 3.8rem;
+                    height:6.5rem;
+                    background: url('@{baseDir}/images/cart-icon.svg') no-repeat bottom center;
                     background-size: contain;
                 }
             }
@@ -451,8 +491,8 @@
                 &.authorization-link{
                    & > a{
                         &::before{
-                            width: 3rem;
-                            height: 3rem;
+                            width: 4rem;
+                            height: 4rem;
                             background: url('@{baseDir}images/user-icon.svg') no-repeat center center;
                         }
                     }
@@ -462,8 +502,8 @@
                 & > li{
                     &.welcome{
                         &::before{
-                            width:3rem;
-                            height:3rem;
+                            width:4rem;
+                            height:4rem;
                             background: url('@{baseDir}images/user-icon.svg') no-repeat center center;
                         }
                     }
@@ -532,8 +572,8 @@
             &.showcart, &.showcart.active{
                 &::before{
                     content: '';
-                    width: 3rem;
-                    height:3rem;
+                    width: 4rem;
+                    height:4rem;
                     background: url('@{baseDir}/images/cart-icon.svg') no-repeat;
                     background-size: contain;
                 }
