@@ -1,0 +1,39 @@
+<?php
+
+$websiteId = $block->getCurrentWebsiteId();
+$websites = $block->getWebsites();
+
+ if (count($websites) > 1): ?>
+ 
+<div class="switcher website switcher-website" id="switcher-website">
+<strong class="label switcher-label"><span><?php echo __('Select Website') ?></span></strong>
+
+<div class="actions dropdown options switcher-options">
+    <?php foreach ($websites as $website): ?>
+    <?php if ($websiteId == $website->getId()): ?>
+    <div class="action toggle switcher-trigger"
+         role="button"
+         tabindex="0"
+         data-mage-init='{"dropdown":{}}'
+         data-toggle="dropdown"
+         data-trigger-keypress-button="true"
+         id="switcher-website-trigger">
+         <strong>
+         <img src="<?php echo $block->getMediaUrl().'wysiwyg/flags/'.$block->escapeHtml($block->escapeHtml($website->getCode())).'.png'; ?>" alt="" />
+            <span class="<?php echo isset($websiteId) ? $websiteId :null;?>"><?php echo $block->escapeHtml($website->getName()) ?></span>
+        </strong>
+    </div>
+<?php endif; ?>
+<?php endforeach; ?>
+<ul class="dropdown switcher-dropdown" data-target="dropdown">
+    <?php foreach ($websites as $website): ?>
+        <li class="switcher-option">
+            <a class="<?php echo $website->getId() ? $website->getId() : ''; ?>" href='<?php echo $website->getDefaultStore()->getCurrentUrl(); ?>'>
+            <img src="<?php echo $block->getMediaUrl().'wysiwyg/flags/'.$block->escapeHtml($website->getCode()).'.png'; ?>" alt="" />
+            </a>
+        </li>
+    <?php endforeach; ?>
+</ul>
+</div>
+</div>
+<?php endif; ?>
