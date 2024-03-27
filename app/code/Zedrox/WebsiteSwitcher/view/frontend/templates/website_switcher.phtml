@@ -20,7 +20,7 @@ $websites = $block->getWebsites();
          id="switcher-website-trigger">
          <strong>
          <img src="<?php echo $block->getMediaUrl().'wysiwyg/flags/'.$block->escapeHtml($block->escapeHtml($website->getCode())).'.png'; ?>" alt="" />
-            <span class="<?php echo isset($websiteId) ? $websiteId :null;?>"><?php echo $block->escapeHtml($website->getName()) ?></span>
+            <span class="<?php echo isset($websiteId) ? $websiteId :null;?>"></span>
         </strong>
     </div>
 <?php endif; ?>

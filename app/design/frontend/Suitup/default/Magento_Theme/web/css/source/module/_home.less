@@ -532,6 +532,7 @@
     //
     // Head Block new
     //--------------------
+
     .page-main{
         .header{
             &-left-link{
@@ -554,16 +555,34 @@
                             font-size:1.8rem;
                             color: @black_color;
                             span{
-                                width: 3rem;
+                                width: 3.5rem;
                                 height: 3rem;
                                 margin-right: 1rem;
-                            }
-                            strong{
-                                margin-inline: 0.5rem;
+                                img{
+                                    width: 3.5rem;
+                                }
                             }
                             &:hover{
                                 text-decoration: none;
                                 color:@secondary_color;
+                            }
+                        }
+                        &:not(:nth-child(3)){
+                            a{
+                                span{
+                                    img{
+                                        width: 3.2rem;
+                                    }
+                                }
+                            }
+                        }
+                        &:last-child{
+                            a{
+                                span{
+                                    img{
+                                        width: 3rem;
+                                    }
+                                }
                             }
                         }
                     }
@@ -714,7 +733,7 @@
         }
         .block{
             &-faq, &-ask{
-                padding: 3rem;
+                padding: 2rem;
                 .radius(@radius:5px);
             }
             &-faq{
@@ -756,20 +775,19 @@
                     ul{
                         .flex-display(@display:flex);
                         .align-items(@align:center);
+                        .justify-content(@justify:between);
                         padding-left: 0;
                         gap:1rem;
                         margin-bottom: 0;
                         li{
                             list-style: none;
-                            flex:100%;
-                            max-width: 100%;
                             a{
                                 .flex-display(@display:flex);
                                 gap: 1rem;
                                 color: @black_color;
                                 font-size:1.4rem;
                                 .icon{
-                                    width: 1.4rem;
+                                    width: 1.8rem;
                                 }
                                 &:hover{
                                     text-decoration: none;
@@ -779,7 +797,7 @@
                             &:last-child{
                                 a{
                                     .icon{
-                                        width: 2.5rem;
+                                        width: 2.3rem;
                                     }
                                 }
                             }
@@ -800,7 +818,7 @@
                     padding: 0;
                     margin: 0;
                     .flex-display(@display:flex);
-                    .justify-content(@justify:center);
+                    //.justify-content(@justify:center);
                     .flex-wrap(@wrap:wrap);
                     gap: 1rem;
                     & > li{
@@ -812,15 +830,12 @@
                         a{
                             .flex-display(@display:flex);
                             .align-items(@align:center;);
-                            font-size:1.4rem;
+                            font-size:1.6rem;
                             color: @black_color;
                             span{
-                                width: 2rem;
+                                width: 2.5rem;
                                 height: 2rem;
                                 margin-right: 1rem;
-                            }
-                            strong{
-                                margin-inline: 0.5rem;
                             }
                             &:hover{
                                 text-decoration: none;

@@ -189,6 +189,43 @@
                     }
                 }
             }
+        }        
+    }
+    .page-header{
+        .panel{
+            &.wrapper{
+                .switcher {
+                    &-website{
+                        .switcher-options{
+                            .switcher-trigger{
+                                img{
+                                    max-width: 3rem;
+                                }
+                            }
+                            &.active{
+                                .switcher-dropdown{
+                                    display: grid !important;
+                                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                                }
+                            }
+                            .switcher-dropdown{
+                                min-width: 9rem !important;
+                                padding: 0.5rem;
+                                .switcher{
+                                    &-option{                                   
+                                        a{
+                                            padding: 0.3rem;
+                                            img{
+                                                max-width: 3.5rem;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     .wishlist{
@@ -296,9 +333,6 @@
                                     .flex-display(@display:flex);
                                     .align-items(@align:center);
                                 }
-                                strong{
-                                    margin-inline: 0.5rem;
-                                }
                                 &:hover{
                                     text-decoration: none;
                                     color:@secondary_color;
@@ -310,8 +344,10 @@
             }
         }
         .switcher {
-            &-currency{
+            &-website{                
                 margin-left: auto;
+            }
+            &-currency{
                 color: @black_color;
                 font-size: 1.5rem;
             }

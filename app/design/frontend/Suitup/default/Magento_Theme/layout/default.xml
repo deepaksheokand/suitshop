@@ -8,16 +8,15 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
 		<!-- Create Element -->
-		<referenceContainer name="header.panel">	
-		</referenceContainer>
-			<container name="header.top.container" label="header_top_container" htmlTag="div" htmlClass="header-top-container" >	
-				<block class="Magento\Cms\Block\Block" name="header_top_left"> 
+		<referenceContainer name="header.panel">		
+			<container name="header.top.container" label="header_top_container" htmlTag="div" htmlClass="header-top-container" >	<block class="Magento\Cms\Block\Block" name="header_top_left"> 
 					<arguments> 
 						<argument name="block_id" xsi:type="string">header-top-left</argument> 
 					</arguments> 
 				</block>
+				<block class="Zedrox\WebsiteSwitcher\Block\Switcher" name="website_switcher" as="website_switcher" template="Zedrox_WebsiteSwitcher::website_switcher.phtml" after="-"/>
 			</container>
-		
+		</referenceContainer>
 		<referenceContainer name="header-wrapper">		
 			<container name="header-middle" label="header_middle-div" htmlTag="div" htmlClass="header_middle" after="logo">							
 			 </container>
@@ -54,8 +53,7 @@
 		</referenceContainer>
 		<!-- Move Element -->	
 		<move element="header.top.container" destination="header.panel" before="-" />
-		<move element="header.switchers" destination="header.top.container" before="-" />
-		<move element="currency" destination="header.top.container" after="-" />
+		<move element="currency" destination="header.top.container" after="-" />				
 		<move element="top.search" destination="header-middle" after="-" />
 		<move element="navigation.sections" destination="header.container" after="-" />
 		<move element="minicart" destination="header-right" after="-" />
